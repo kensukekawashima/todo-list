@@ -8,7 +8,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.save
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 
   def update
@@ -20,7 +23,6 @@ class TasksController < ApplicationController
 
   def destroy
     Task.find(params[:id]).destroy
-    redirect_to root_url
   end
 
   private
