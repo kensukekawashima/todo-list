@@ -1,0 +1,7 @@
+<div class="post-up">
+  <%= form_for @task, html: { class: "d-flex justify-content-center p-5 m-5"} do |t| %>
+    <%= t.text_field :title, class:"form-control w-50",placeholder: "WHAT YOU HAVE TO DO. WRITE DOWN HERE" %>
+
+    <%= t.submit "POST UP", class:"btn btn-success ml-5" %>
+  <% end %>
+</div>

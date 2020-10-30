@@ -1,0 +1,26 @@
+@import "bootstrap";
+@import 'font_awesome5_webfont';
+@import 'font_awesome5.css';
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.todo {
+  flex: 1;
+}
+
+.edit {
+  display: inline-block;
+  height: 38px;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

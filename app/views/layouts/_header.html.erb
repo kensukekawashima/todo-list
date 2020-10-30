@@ -1,0 +1,21 @@
+<header id="header">
+  <div class="inner">
+    <nav class="navbar navbar-expanded-lg navbar-dark bg-dark">
+      <h1><%= link_to "TODO LIST", root_path, class: "navbar-brand text-light" %></h1>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "HOME", root_path, class:"nav-link text-light" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "USER", "#", class:"nav-link text-light" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
