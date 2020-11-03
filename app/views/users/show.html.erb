@@ -1,0 +1,13 @@
+<div class="todo bg-dark">
+  <div class="container">
+    <div class="profile d-flex flex-column justify-content-center text-light">
+      <%= @user.name %>
+    </div>
+    <% if @user.id == current_user.id %>
+      <%= render partial: 'shared/post_up', locals: { task: @task } %>
+    <% end %>
+    <div class="lists">
+     <%= render partial: 'tasks/task', collection: @tasks %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<%= form_for (user) do |t| %>
+  <div class="signup">
+    <% if user.errors.any? %>
+      <div class="error d-flex justify-content-center w-50">
+        <% user.errors.full_messages.each do |msg| %>
+          <p class="text-danger mb-1" id="error"><%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="form-group w-50 mx-auto mt-4">
+      <%= t.label :name, class: "text-light" %>
+      <%= t.text_field :name, class:"form-control text-center", placeholder: "WHAT IS YOUR NAME" %>
+    </div>
+    
+    <div class="form-group w-50 mx-auto mt-4">
+      <%= t.label :email, class: "text-light" %>
+      <%= t.email_field :email, class:"form-control text-center", placeholder: "WHAT IS YOUR EMAIL" %>
+    </div>
+
+    <div class="form-group w-50 mx-auto mt-4">
+      <%= t.label :password, class: "text-light" %>
+      <%= t.password_field :password, class:"form-control text-center", placeholder: "WHAT IS YOUR PASSWORD" %>
+    </div>
+
+    <div class="form-group w-50 mx-auto mt-4">
+      <%= t.label :password_confirmation, class: "text-light" %>
+      <%= t.password_field :password_confirmation, class:"form-control text-center", placeholder: "PUT DOWN AGAIN" %>
+    </div>
+
+    <div class="form-group w-50 mx-auto mt-4">
+      <%= t.submit "SIGN UP", class:"btn btn-success" %>
+    </div>
+  </div>
+<% end %>

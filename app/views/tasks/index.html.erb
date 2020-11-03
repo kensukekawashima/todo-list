@@ -1,9 +1,9 @@
-<% provide(title:"HOME") %>
+<% provide(title:"TASKS") %>
 <section id="todo" class="todo bg-dark">
   <div class="container">
-    <%= render partial: 'post_up', locals: { task: @task } %>
+    <%= render partial: 'shared/post_up', locals: { task: @task } %>
     <div class="lists">
-     <%= render @tasks %>
+     <%= render partial: 'task', collection: @tasks %>
     </div>
   </div>
 </section> 

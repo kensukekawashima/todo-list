@@ -1,19 +1,45 @@
 <header id="header">
   <div class="inner">
-    <nav class="navbar navbar-expanded-lg navbar-dark bg-dark">
-      <h1><%= link_to "TODO LIST", root_path, class: "navbar-brand text-light" %></h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+      <h1><%= link_to "TO DO LIST", root_path, class: "navbar-brand text-light" %></h1>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+        <ul class="navbar-nav ml-auto">
+        <% if logged_in? %>
+          <li class="nav-item active mx-3">
+            <%= link_to "LOG OUT", logout_path, class:"nav-link text-light", method: :delete %>
+          </li>
+          <li class="nav-item active mx-3">
+            <%= link_to "USERS", users_path, class:"nav-link text-light" %>
+          </li>
+          <li class="nav-item active mx-3">
+            <%= link_to "POSTS", tasks_path, class:"nav-link text-light" %>
+          </li>
+          <li class="nav-item active mx-3">
+            <div class="dropdown">
+              <a id="dropdownMenu" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded=false>ACCOUNT</a>
+              <ul class="dropdown-menu bg-dark ml-auto" aria-labelledby="dropdownMenu">
+                <li><%= link_to "PROFILE", user_path(current_user), class:"nav-link text-light" %></li>
+                <li><%= link_to "SETTING", edit_user_path(current_user), class:"nav-link text-light" %></li>
+              </ul>
+            </div>
+          </li>
+        <% else %>
+        <li class="nav-item active mx-3">
             <%= link_to "HOME", root_path, class:"nav-link text-light" %>
           </li>
-          <li class="nav-item active">
-            <%= link_to "USER", "#", class:"nav-link text-light" %>
+         <li class="nav-item active mx-3">
+            <%= link_to "ABOUT", about_path, class:"nav-link text-light" %>
           </li>
+          <li class="nav-item active mx-3">
+            <%= link_to "SIGN UP", new_user_path, class:"nav-link text-light" %>
+          </li>
+          <li class="nav-item active mx-3">
+            <%= link_to "LOG IN", login_path, class:"nav-link text-light" %>
+          </li>
+        <% end %>
         </ul>
       </div>
     </nav>

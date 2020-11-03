@@ -1,0 +1,13 @@
+<div class="post-up p-5 m-5"> 
+  <%= form_for task, html: { id: "js-form"}, remote: true do |t| %>
+    <div class="d-flex justify-content-center w-50">
+      <p class="error text-danger mb-1"></p>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%# hidden_fieldを使用してfieldを隠した状態で必要な要素を送れる。 %>
+      <%= t.hidden_field :user_id, value: current_user.id  %>
+      <%= t.text_field :title, class:"form-control w-50 text-center",placeholder: "WHAT YOU HAVE TO DO. WRITE DOWN HERE" %>
+      <%= t.submit "POST UP", class:"btn btn-success ml-5" %>
+    </div>
+  <% end %>
+</div>

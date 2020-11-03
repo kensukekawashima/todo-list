@@ -34,7 +34,7 @@ $(function () {
     const body = textField.val();
 
     $.ajax({
-      url: 'tasks/' + commentId,
+      url: '/users/:id/tasks/' + commentId,
       type: 'PUT',
       data: {
         task: {

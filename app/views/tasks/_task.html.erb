@@ -1,16 +1,25 @@
-<div id="comment-<%= task.id %>"  class="list text-light d-flex justify-content-center py-3">
-  <p id="js-comment-label-<%= task.id %>" class="mx-5 my-2"><%= task.title %></p>
-  <p id="js-comment-post-error-<%= task.id %>" class="text-danger"></p>
-  <%# 編集用 %>
-  <textarea style="display: none;" id="js-textarea-comment-<%= task.id %>" class="form-control comment-post-error w-25"><%= task.title %></textarea>
-  <div id="js-comment-button-<%= task.id %>" style="display: none;">
-    <button data-cancel-id=<%= task.id %> type="button" class="btn btn-light comment-cancel-button">cancel</button>
-    <button data-update-id=<%= task.id %> type="submit" class="btn btn-success comment-update-button">Update</button>
+<div id="comment-<%= task.id %>"  class="list text-light w-75 d-flex justify-content-center mx-auto py-3">
+  <div class="d-flex flex-column justify-content-center">
+    <%# 編集時、user_nameを消したい場合、tasks.jsに追記必須 %>
+    <p id="js-comment-user-name-<%= task.id %>" class="task m-0 text-center"><%= link_to task.user.name, task.user, class: "text-light" %></p>
+    <p id="js-comment-label-<%= task.id %>" class="task my-2 text-center"><%= task.title %></p>
+    <p id="js-comment-post-error-<%= task.id %>" class="text-danger mb-1"></p>
+
+    <%# 編集用 %>
+    <textarea style="display: none;" id="js-textarea-comment-<%= task.id %>" class="task form-control comment-post-error"><%= task.title %></textarea>
+    <div id="js-comment-button-<%= task.id %>" class="mt-2" style="display: none;">
+      <button data-cancel-id=<%= task.id %> type="button" class="btn btn-light comment-cancel-button">cancel</button>
+      <button data-update-id=<%= task.id %> type="submit" class="btn btn-success comment-update-button">Update</button>
+    </div>
   </div>
-  <span data-comment-id=<%= task.id %> class="js-edit-comment-button btn btn-primary rounded-circle edit far fa-edit"></span>
-  <span>
-    <%= link_to task, class:"btn btn-danger rounded-circle mx-2", method: :delete, remote: true, data: { confirm: "You sure?" } do %>
-      <%= fa_icon('trash-alt') %>
+  <div class="d-flex ml-5">
+    <% if task.user_id == current_user.id %>
+      <span data-comment-id=<%= task.id %> class="js-edit-comment-button btn btn-primary rounded-circle edit far fa-edit"></span>
+      <span>
+        <%= link_to task, class:"btn btn-danger rounded-circle mx-2", method: :delete, remote: true, data: { confirm: "You sure?" } do %>
+          <%= fa_icon('trash-alt') %>
+        <% end %>
+      </span>
     <% end %>
-  </span>
+  </div>
 </div>
