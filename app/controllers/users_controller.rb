@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show,:edit,:update,:delete]
-  before_action :correct_user, only: [:edit,:update,:delete]
+  before_action :logged_in_user, only: [:show,:edit,:update,:destroy]
+  before_action :correct_user, only: [:edit,:update,:destroy]
 
   def index
     @users = User.all.order(created_at: "DESC")
@@ -59,7 +59,10 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    if !current_user?(@user)
+      flash[:danger] = "YOU DO NOT HAVE THE RIGHT"
+      redirect_to root_url
+    end
   end
 
 end
