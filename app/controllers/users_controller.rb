@@ -65,13 +65,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_digest)
   end
 
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] ="SHOULD LOG IN"
-      redirect_to login_url
-    end
-  end
-
   def correct_user
     @user = User.find(params[:id])
     if !current_user?(@user)

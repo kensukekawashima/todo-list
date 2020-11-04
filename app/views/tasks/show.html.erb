@@ -1,0 +1,29 @@
+<div class="todo bg-dark">
+  <div class="container">
+    <div class="d-flex flex-column justify-content-center text-light">
+      <p class="text-center display-4 mb-0"><%= @task.title %></p>
+    </div>
+    <div class="comment-space w-75 mx-auto">
+      <div class="comment-inner w-75 bg-secondary mx-auto scroll">
+        <h2 class="text-light text-center p-3 ">COMMENT</h2>
+        <div class="comment mb-5">
+          <%= form_for @comment, html: { id: "js-form2"} do |t| %>
+            <div class="d-flex justify-content-center">
+              <p class="error text-center text-danger mb-1"></p>
+            </div>
+            <div class="d-flex justify-content-center">
+              <%# hidden_fieldを使用してfieldを隠した状態で必要な要素を送れる。 %>
+              <%= t.hidden_field :user_id, value: current_user.id  %>
+              <%= t.hidden_field :task_id, value: @task.id  %>
+              <%= t.text_field :comment, class:"form-control w-50 text-center",placeholder: "WHAT YOUR OPINION" %>
+              <%= t.submit "COMMENT", class:"btn btn-success ml-5" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="comments-space scroll mx-auto">
+          <%= render partial: 'comment', collection: @comments %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

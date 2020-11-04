@@ -2,7 +2,7 @@
   <div class="d-flex flex-column justify-content-center">
     <%# 編集時、user_nameを消したい場合、tasks.jsに追記必須 %>
     <p id="js-comment-user-name-<%= task.id %>" class="task m-0 text-center"><%= link_to task.user.name, task.user, class: "text-light" %></p>
-    <p id="js-comment-label-<%= task.id %>" class="task my-2 text-center"><%= task.title %></p>
+    <p id="js-comment-label-<%= task.id %>" class="task my-2 text-center"><%= link_to task.title, task_path(task), class:"text-success" %></p>
     <p id="js-comment-post-error-<%= task.id %>" class="text-danger mb-1"></p>
 
     <%# 編集用 %>

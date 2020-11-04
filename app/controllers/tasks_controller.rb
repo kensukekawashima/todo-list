@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:update, :destroy]
+  before_action :logged_in_user
+  before_action :set_task, only: [:show, :update, :destroy]
   before_action :correct_user, only: [:update, :destroy]
   def index
     @user = User.find_by(id: current_user.id)
@@ -10,6 +11,11 @@ class TasksController < ApplicationController
     # @tasks = Task.page(params[:page]).per(10)
     @tasks = Task.where(user_id: @following).order("created_at DESC").page(params[:page]).per(10)
     @task = Task.new
+  end
+
+  def show
+    @comment = Comment.new
+    @comments = @task.comments.order("created_at ASC")
   end
 
   def create

@@ -1,0 +1,25 @@
+<% if comment.user_id == current_user.id %>
+  <p class="text-light text-right p-3">
+    <%= comment.comment %>
+    <%= comment.user.name %>
+    <% if comment.user_id == current_user.id %>
+      <span>
+        <%= link_to comment, class:"btn btn-danger rounded-circle mx-2", method: :delete, data: { confirm: "You sure?" } do %>
+          <%= fa_icon('trash-alt') %>
+        <% end %>
+      </span>
+    <% end %>
+  </p>
+<% else %>
+  <p class="text-success text-left p-3">
+    <%= comment.comment %>
+    <%= comment.user.name %>
+    <% if comment.user_id == current_user.id %>
+      <span>
+        <%= link_to comment, class:"btn btn-danger rounded-circle mx-2", method: :delete, data: { confirm: "You sure?" } do %>
+          <%= fa_icon('trash-alt') %>
+        <% end %>
+      </span>
+    <% end %>
+  </p>
+<% end %>

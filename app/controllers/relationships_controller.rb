@@ -30,12 +30,6 @@ class RelationshipsController < ApplicationController
 
   private
 
-  def logged_in_user
-    unless logged_in?
-      render root_path
-    end
-  end
-
   def set_user
     @user = User.find(params[:relationship][:follow_id])
   end

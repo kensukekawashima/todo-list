@@ -1,5 +1,5 @@
 $(function () {
-  // コメント編集エリアを表示
+  // todoの編集エリアを表示
   // これだとupdateボタンを押しても反応しない。リロードする必要がある
   // $('.js-edit-comment-button').on('click', function(){
   $(document).on('click', ".js-edit-comment-button", function(){
@@ -13,7 +13,7 @@ $(function () {
     commentButton.show();
   });
 
-  // コメント編集エリアを非表示
+  // todoの編集エリアを非表示
   $(document).on('click', ".comment-cancel-button", function(){
     const commentId = $(this).data('cancel-id');
     const commentLabelArea = $('#js-comment-label-' + commentId);
@@ -27,7 +27,7 @@ $(function () {
     commentError.hide();
   });
 
-  // コメント更新
+  // todoの更新
   $(document).on('click', '.comment-update-button', function() {
     const commentId = $(this).data('update-id');
     const textField = $('#js-textarea-comment-' + commentId);
@@ -60,7 +60,7 @@ $(function () {
 
       .fail(function () {
         const commentError = $('#js-comment-post-error-' + commentId);
-        commentError.text("コメントを入力してください")
+        commentError.text("todoのを入力してください")
       })
   });
 });
