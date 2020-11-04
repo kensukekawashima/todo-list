@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show,:edit,:update,:destroy]
+  before_action :logged_in_user, only: [:show,:edit,:update,:destroy,:followings,:followers]
   before_action :correct_user, only: [:edit,:update,:destroy]
 
   def index
-    @users = User.all.order(created_at: "DESC")
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks.order(created_at: "ASC")
+    @tasks = @user.tasks.page(params[:page]).per(10)
     @task = Task.new
   end
 
@@ -17,11 +17,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      log_in user
+    # インスタンス変数にする必要がある。理由は、エラ〜メッセージを表示する前は必ずこのcreate actionを通るため
+    @user = User.new(user_params)
+    if @user.save
+      log_in @user
       flash[:succes] = "SIGNED UP"
-      redirect_to user
+      redirect_to @user
     else
       render 'new'
     end
@@ -34,7 +35,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      render @user
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
@@ -42,6 +45,18 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "THANK YOU FOR USING THIS APP"
     redirect_to root_url
+  end
+
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings.page(params[:page]).per(10)
+    render 'show_follow'
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page]).per(10)
+    render 'show_follow'
   end
 
   private

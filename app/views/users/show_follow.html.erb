@@ -1,0 +1,19 @@
+<div class="todo bg-dark">
+  <div class="container">
+    <div class="profile d-flex flex-column justify-content-center text-light">
+      <p class="text-center display-4 mb-0"><%= @user.name %></p>
+      <p><%= render 'relationships/stats' %></p>
+    </div>
+    <%= render 'relationships/follow' if logged_in? %>
+    <section id="users" class="todo bg-dark">
+      <div class="container">
+        <div class="users">
+          <%= render @users %>
+          <%= paginate @users %>
+        </div>
+      </div>
+    </section> 
+    <div>
+    </div>
+  </div>
+</div>

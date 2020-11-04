@@ -1,40 +1,14 @@
+<% provide(:button_text, 'UPDATE') %>
 <div class="todo bg-dark text-light text-center">
   <h2 class="p-4 m-4">EDIT</h2>
-  <%= form_for (@user) do |t| %>
-    <div class="d-flex justify-content-center w-50">
-        <p class="error text-danger mb-1"></p>
-    </div>
-    <div class="update">
-      <div class="form-group w-50 mx-auto mt-4">
-        <%= t.label :name, class: "text-light" %>
-        <%= t.text_field :name, class:"form-control text-center", placeholder: "WHAT IS YOUR NAME" %>
-      </div>
-      
-      <div class="form-group w-50 mx-auto mt-4">
-        <%= t.label :email, class: "text-light" %>
-        <%= t.email_field :email, class:"form-control text-center", placeholder: "WHAT IS YOUR EMAIL" %>
-      </div>
-
-      <div class="form-group w-50 mx-auto mt-4">
-        <%= t.label :password, class: "text-light" %>
-        <%= t.password_field :password, class:"form-control text-center", placeholder: "WHAT IS YOUR PASSWORD" %>
-      </div>
-
-      <div class="form-group w-50 mx-auto mt-4">
-        <%= t.label :password_confirmation, class: "text-light" %>
-        <%= t.password_field :password_confirmation, class:"form-control text-center", placeholder: "PUT DOWN AGAIN" %>
-      </div>
-
-      <div class="d-flex justify-content-center form-group w-50 mx-auto mt-4">
-        <%= t.submit "UPDATE", class:"btn btn-success" %>
-        <% if current_user?(@user) %>
-          <span>
-            <%= link_to user_path(@user), class:"btn btn-danger rounded-circle mx-2", method: :delete, data: { confirm: "You sure?" } do %>
-              <%= fa_icon('trash-alt') %>
-            <% end %>
-          </span>  
+  <%= render 'form' %>
+  <div class="d-flex justify-content-center form-group w-50 mx-auto mt-4">
+    <% if current_user?(@user) %>
+      <span>
+        <%= link_to user_path(@user), class:"btn btn-danger rounded-circle mx-2", method: :delete, data: { confirm: "You sure?" } do %>
+          <%= fa_icon('trash-alt') %>
         <% end %>
-      </div>
-    </div>
-  <% end %>
+      </span>  
+    <% end %>
+  </div>
 </div>

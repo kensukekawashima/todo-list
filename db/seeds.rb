@@ -10,7 +10,7 @@ User.create(name: "jason",
             password: "password",
             password_confirmation: "password")
 
-9.times do |n|
+20.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@example.org"
   password = "password"
@@ -20,8 +20,17 @@ User.create(name: "jason",
               password_confirmation: password)
 end
 
-Task.create!(title:"workout", user_id: 1)
-9.times do |n|
-  Task.create!(title:"test#{n}",
-              user_id: "#{n + 1}")
+2.times do |n|
+  10.times do |n|
+    title = Faker::Movie.title
+    Task.create!(title: title,
+                user_id: "#{n + 1}")
+  end
 end
+
+users = User.all
+user = users.first
+followings = users[2..19]
+followers = users[2..14]
+followings.each { |following| user.follow(following)}
+followers.each { |follower| follower.follow(user)}

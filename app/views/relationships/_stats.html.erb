@@ -1,0 +1,10 @@
+<div class="stats text-light d-flex justify-content-center mt-4">
+  <div class="btn btn-primary btn-sm mx-3">
+    <strong id="following" class="stat d-block"><%= @user.followings.count %></strong>
+    <%= link_to "following", followings_user_path(@user), class:"text-light"%>
+  </div>
+  <div class="btn btn-primary  btn-sm">
+    <strong id="followers" class="stat d-block"><%= @user.followers.count %></strong>
+    <%= link_to "followers", followers_user_path(@user), class:"text-light" %>
+  </div>
+</div>

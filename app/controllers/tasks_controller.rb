@@ -2,7 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:update, :destroy]
   before_action :correct_user, only: [:update, :destroy]
   def index
-    @tasks = Task.all.order(created_at: "ASC")
+    @user = User.find_by(id: current_user.id)
+    @following = @user.followings
+    unless @following.include?(@user)
+      @following.push @user
+    end
+    # @tasks = Task.page(params[:page]).per(10)
+    @tasks = Task.where(user_id: @following).order("created_at DESC").page(params[:page]).per(10)
     @task = Task.new
   end
 

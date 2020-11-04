@@ -5,5 +5,8 @@
     <div class="lists">
      <%= render partial: 'task', collection: @tasks %>
     </div>
+    <div>
+      <%= paginate @tasks %>
+    </div>
   </div>
 </section> 

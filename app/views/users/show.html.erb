@@ -1,15 +1,18 @@
 <div class="todo bg-dark">
   <div class="container">
-    <div class="profile d-flex justify-content-center text-light">
-      <p class="text-center display-4 mb-0">
-        <%= @user.name %>
-      </p>
+    <div class="profile d-flex flex-column justify-content-center text-light">
+      <p class="text-center display-4 mb-0"><%= @user.name %></p>
+      <p><%= render 'relationships/stats' %></p>
     </div>
+    <%= render 'relationships/follow' if logged_in? %>
     <% if current_user?(@user) %>
       <%= render partial: 'shared/post_up', locals: { task: @task } %>
     <% end %>
     <div class="lists">
      <%= render partial: 'tasks/task', collection: @tasks %>
+    </div>
+    <div>
+    <%= paginate @tasks %>
     </div>
   </div>
 </div>

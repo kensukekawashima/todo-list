@@ -1,6 +1,7 @@
 <% provide(title:"SIGN UP") %>
+<% provide(:button_text, 'SIGN UP') %>
 <div id="signup" class="todo signup bg-dark">
   <div class="container">
-    <%= render partial: 'sign_up', locals: { user: @user } %>
+    <%= render 'form' %>
   </div>
 </div> 
